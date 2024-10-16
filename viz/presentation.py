@@ -1,11 +1,24 @@
 import marimo
 
-__generated_with = "0.9.9"
+__generated_with = "0.9.10"
 app = marimo.App(
-    width="full",
+    width="medium",
     layout_file="layouts/presentation.slides.json",
     css_file="custom.css",
 )
+
+
+@app.cell
+def __(mo):
+    page = open("iframes/title.html", "r").read()
+    mo.iframe(page, width="900px", height="100%").style(overflow= "hidden")
+    return (page,)
+
+
+@app.cell
+def __(chart, mo):
+    mo.vstack([chart, mo.ui.table(chart.value)])
+    return
 
 
 @app.cell
@@ -14,36 +27,7 @@ def __():
     import time
     from marimo import Html
     import numpy as np
-    return Html, mo, np, time
 
-
-@app.cell
-def __(mo):
-    refresh = mo.ui.refresh(
-        options=["1s"], 
-        default_interval="1s",
-    )
-    refresh
-    return (refresh,)
-
-
-@app.cell
-def __(mo):
-    mo.md(r"""# Presentation""")
-    return
-
-
-@app.cell
-def __(Html, np, refresh):
-    names = ["Elon Musk", "Donald Trump", "Taylor Swift", "Kim Kardashian", "Kanye"]
-    title = Html(f"<h1> What did <strong>{np.random.choice(names, 1).item()}</strong> say this time?</h2>")
-    refresh.value
-    title
-    return names, title
-
-
-@app.cell
-def __():
     import yfinance as yf
     import pandas as pd
     import altair as alt
@@ -52,14 +36,14 @@ def __():
     import micropip
     import json
     import altair as alt
-    return alt, json, micropip, pd, yf
+    import os
+    return Html, alt, json, micropip, mo, np, os, pd, time, yf
 
 
 @app.cell
 def __(yf):
     # Test Data, Real Data Will Come Later
-    tickers = ['AAPL', 'MSFT', 'GOOGL', 'AMZN', 'TSLA']
-
+    tickers = ['MSFT', 'META', 'NVDA', 'AAPL', 'GOOG','XOM', 'PARR', 'CVX', 'COP', 'SLB',  'LLY', 'ROIV', 'PFE', 'JNJ', 'MRNA',  'T', 'KT', 'VZ', 'CMCSA', 'TMUS',  'CMBT', 'GE', 'BA', 'CAT', 'HON',  'BIPC', 'NEE', 'DUK', 'SO', 'AEP']
     data = yf.download(tickers, start="2019-01-01", end="2024-10-01")['Adj Close']
 
     data = data.reset_index()
@@ -88,12 +72,6 @@ def __(alt, data_melted, mo):
         _chart
     )
     return brush, chart
-
-
-@app.cell
-def __(chart, mo):
-    mo.vstack([chart, mo.ui.table(chart.value)])
-    return
 
 
 if __name__ == "__main__":
