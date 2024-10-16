@@ -5,7 +5,7 @@ docker run \
 -v ~/minio/data:/data \
 -e "MINIO_ROOT_USER=ROOTNAME" \
 -e "MINIO_ROOT_PASSWORD=CHANGEME123" \
-quay.io/minio/minio server /data --console-address ":9001"
+quay.io/minio/minio:latest server /data --console-address ":9001"
 
 
 Some chinese guy told me that
