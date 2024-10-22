@@ -3,3 +3,7 @@
 .DS_store
 data/.DS_store
 .gitignore
+eda-ddb/eda-gdelt.ddb
+eda-ddb/eda-gdelt.ddb.wal
+eda-ddb/eda-yfinance.ddb
+eda-ddb/eda-yfinance.ddb.wal
