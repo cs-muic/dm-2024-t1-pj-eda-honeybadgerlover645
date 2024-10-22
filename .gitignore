@@ -1,2 +1,5 @@
 .idea
 .ipynb_checkpoints
+.DS_store
+data/.DS_store
+.gitignore
