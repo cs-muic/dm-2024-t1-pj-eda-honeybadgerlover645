@@ -4,3 +4,7 @@ eda-ddb/eda-gdelt.ddb
 eda-ddb/eda-gdelt.ddb.wal
 eda-ddb/eda-yfinance.ddb
 eda-ddb/eda-yfinance.ddb.wal
+fitlered2_ret.parquet
+heavy/heavyai-ee-8.1.1-20240915-4b323146b6-Linux-x86_64.tar.gz
+*.csv
+*.parquet
